@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-offset-2 col-xs-8">
+            <h1>Hello Vue!</h1>
+
+            <div id="app">
+                <h3>Список пользователей</h3>
+
+                <button v-show="list.length === 0" type="button" v-on:click="getUsers()">Get users</button>
+
+                <users-list v-bind:users="list"></users-list>
+
+                <div id="users-list">
+                    <ul class="users">
+                        <li v-for="user in users" v-bind:key="user.id" class="user">
+                            <img v-if="user.pic" class="pic" v-bind:src="user.pic">
+                            <div v-else class="pic no-photo">no photo</div>
+                            <div class="data">
+                                {{ user.surname }} {{ user.firstName }} {{ user.lastName }}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    var UsersList = {
+        template: '#users-list',
+        props: {
+            users: {
+                required: true,
+            }
+        }
+    };
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            listSeen: true,
+            list: []
+        },
+        components: {
+            'users-list': UsersList
+        },
+        methods: {
+            getUsers () {
+                this.list = [
+                    {
+                        id: 1,
+                        firstName: 'Иван',
+                        surname: 'Иванов',
+                        lastName: 'Иванович',
+                        pic: 'https://pp.userapi.com/c309520/v309520360/6f85/ywMM1fZoSvs.jpg'
+                    },
+                    {
+                        id: 2,
+                        firstName: 'Андрей',
+                        surname: 'Семенов',
+                        lastName: 'Вячеславович'
+                    },
+                    {
+                        id: 3,
+                        firstName: 'Екатерина',
+                        surname: 'Ганьшина',
+                        lastName: 'Сергеевна',
+                        pic: 'https://pp.userapi.com/c627322/v627322396/2d804/HKLQvXeA00E.jpg'
+                    },
+                    {
+                        id: 4,
+                        firstName: 'Владимир',
+                        surname: 'Путин',
+                        lastName: 'Владимирович',
+                        pic: 'https://pp.userapi.com/c840330/v840330651/4b4a2/40Z4avu2mt4.jpg'
+                    }
+                ]
+            }
+        }
+    });
+</script>
+</body>
+</html>
