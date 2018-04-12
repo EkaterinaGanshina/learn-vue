@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Users List</title>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,16 +21,30 @@
 
                 <users-list v-bind:users="list"></users-list>
 
-                <div id="users-list">
-                    <ul class="users">
-                        <li v-for="user in users" v-bind:key="user.id" class="user">
-                            <img v-if="user.pic" class="pic" v-bind:src="user.pic">
-                            <div v-else class="pic no-photo">no photo</div>
-                            <div class="data">
-                                {{ user.surname }} {{ user.firstName }} {{ user.lastName }}
-                            </div>
-                        </li>
-                    </ul>
+                <div id="users-list" v-cloak>
+                    <table class="table table-striped users">
+                        <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Аватарка</th>
+                            <th>Фамилия</th>
+                            <th>Имя</th>
+                            <th>Отчество</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="user in users" v-bind:key="user.id" class="user">
+                            <td>{{ user.id }}</td>
+                            <td>
+                                <img v-if="user.pic" class="pic" v-bind:src="user.pic">
+                                <div v-else class="pic no-photo">no photo</div>
+                            </td>
+                            <td>{{ user.surname }}</td>
+                            <td>{{ user.firstName }}</td>
+                            <td>{{ user.lastName }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
