@@ -20,32 +20,32 @@
                 <button v-show="list.length === 0" type="button" v-on:click="getUsers()">Get users</button>
 
                 <users-list v-bind:users="list"></users-list>
+            </div>
 
-                <div id="users-list" v-cloak>
-                    <table class="table table-striped users">
-                        <thead>
-                        <tr>
-                            <th>№</th>
-                            <th>Аватарка</th>
-                            <th>Фамилия</th>
-                            <th>Имя</th>
-                            <th>Отчество</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="user in users" v-bind:key="user.id" class="user">
-                            <td>{{ user.id }}</td>
-                            <td>
-                                <img v-if="user.pic" class="pic" v-bind:src="user.pic">
-                                <div v-else class="pic no-photo">no photo</div>
-                            </td>
-                            <td>{{ user.surname }}</td>
-                            <td>{{ user.firstName }}</td>
-                            <td>{{ user.lastName }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div id="users-list" v-cloak>
+                <table class="table table-striped users">
+                    <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Аватарка</th>
+                        <th>Фамилия</th>
+                        <th>Имя</th>
+                        <th>Возраст</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(user, index) in users" v-bind:key="user.id" class="user">
+                        <td>{{ index + 1 }}</td>
+                        <td>
+                            <img v-if="user.pic" class="pic" v-bind:src="user.pic">
+                            <div v-else class="pic no-photo">no photo</div>
+                        </td>
+                        <td>{{ user.lastName }}</td>
+                        <td>{{ user.firstName }}</td>
+                        <td>{{ user.age }}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -57,6 +57,7 @@
         template: '#users-list',
         props: {
             users: {
+                type: Array,
                 required: true,
             }
         }
@@ -72,36 +73,17 @@
             'users-list': UsersList
         },
         methods: {
-            getUsers () {
-                this.list = [
-                    {
-                        id: 1,
-                        firstName: 'Иван',
-                        surname: 'Иванов',
-                        lastName: 'Иванович',
-                        pic: 'https://pp.userapi.com/c309520/v309520360/6f85/ywMM1fZoSvs.jpg'
-                    },
-                    {
-                        id: 2,
-                        firstName: 'Андрей',
-                        surname: 'Семенов',
-                        lastName: 'Вячеславович'
-                    },
-                    {
-                        id: 3,
-                        firstName: 'Екатерина',
-                        surname: 'Ганьшина',
-                        lastName: 'Сергеевна',
-                        pic: 'https://pp.userapi.com/c627322/v627322396/2d804/HKLQvXeA00E.jpg'
-                    },
-                    {
-                        id: 4,
-                        firstName: 'Владимир',
-                        surname: 'Путин',
-                        lastName: 'Владимирович',
-                        pic: 'https://pp.userapi.com/c840330/v840330651/4b4a2/40Z4avu2mt4.jpg'
+            getUsers: () => {
+                const xhr = new XMLHttpRequest();
+
+                xhr.responseType = 'json';
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        app.list = xhr.response;
                     }
-                ]
+                };
+                xhr.open('GET', 'data.json');
+                xhr.send();
             }
         }
     });
