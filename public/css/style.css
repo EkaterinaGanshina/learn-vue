@@ -1,6 +1,5 @@
 body {
     font-family: 'Roboto', 'Arial', sans-serif;
-    padding: 0 20px;
     margin: 0;
 }
 
@@ -14,6 +13,10 @@ button {
 
 [v-cloak] {
     display: none;
+}
+
+.navbar {
+    border-radius: 0;
 }
 
 .table tbody tr td {
