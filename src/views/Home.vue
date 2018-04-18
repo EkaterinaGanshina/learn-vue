@@ -31,7 +31,7 @@ export default {
         this.list = xhr.response;
       }
     };
-    xhr.open('GET', 'data.json');
+    xhr.open('GET', 'http://localhost:3004/users');
     xhr.send();
   }
 };
