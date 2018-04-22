@@ -42,3 +42,17 @@
     }
   }
 </script>
+
+<style>
+    .items-count,
+    .items-count span,
+    .items-count select {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .items-count select {
+        width: 200px;
+        margin-left: 10px
+    }
+</style>

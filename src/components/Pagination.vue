@@ -52,3 +52,10 @@
     }
   }
 </script>
+
+<style>
+    .pagination {
+        vertical-align: middle;
+        margin-right: 20px;
+    }
+</style>

@@ -43,20 +43,3 @@ button {
     cursor: default;
     line-height: 1;
 }
-
-.pagination {
-    vertical-align: middle;
-    margin-right: 20px;
-}
-
-.items-count,
-.items-count span,
-.items-count select {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.items-count select {
-    width: 200px;
-    margin-left: 10px
-}

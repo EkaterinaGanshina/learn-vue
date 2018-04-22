@@ -3,68 +3,28 @@
         <div class="users-list">
             <h1 class="text-center">Список пользователей</h1>
 
-            <div v-if="!list.length" class="alert alert-warning">Загрузка...</div>
-            <UsersList v-else :users="filteredList"/>
-            <Pagination :itemsCount="list.length" :itemsPerPage="itemsPerPage" v-model="currentPage"/>
-            <ItemsPerPageSelect v-model="itemsPerPage"/>
+            <div v-show="loading" class="alert alert-warning">Загрузка...</div>
+            <SmartTable v-show="!loading" @loadingOver="hideAlert"/>
         </div>
     </div>
 </template>
 
 <script>
-  import axios from 'axios';
-  import UsersList from '@/components/UsersList.vue';
-  import Pagination from '@/components/Pagination.vue';
-  import ItemsPerPageSelect from '@/components/ItemsPerPageSelect.vue';
+  import SmartTable from '@/components/SmartTable.vue';
 
   export default {
     components: {
-      UsersList,
-      Pagination,
-      ItemsPerPageSelect
+      SmartTable
     },
-    data: function () {
+    data() {
       return {
-        list: [],
-        filteredList: [],
-        itemsPerPage: 10,
-        currentPage: 1
+        loading: true
       }
-    },
-    computed: {
-      startIndex() {
-        return (this.currentPage - 1) * this.itemsPerPage;
-      },
-      endIndex() {
-        return this.startIndex + this.itemsPerPage - 1;
-      }
-    },
-    watch: {
-      itemsPerPage() {
-        this.currentPage = 1;
-        this.filterItems();
-      },
-      currentPage: 'filterItems'
-    },
-    mounted() {
-      this.loadUsers();
     },
     methods: {
-      loadUsers() {
-        axios.get('http://localhost:3004/users')
-          .then((response) => {
-            this.list = response.data;
-            this.filterItems();
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      },
-
-      filterItems() {
-        this.filteredList = this.list.filter((item) =>
-          this.list.indexOf(item) >= this.startIndex && this.list.indexOf(item) <= this.endIndex);
+      hideAlert() {
+        this.loading = false;
       }
-    },
+    }
   }
 </script>
