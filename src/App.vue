@@ -26,3 +26,7 @@
         </div>
     </div>
 </template>
+
+<script>
+    import '../public/css/style.css';
+</script>
