@@ -10,11 +10,7 @@
   export default {
     name: 'Pagination',
     props: {
-      itemsCount: {
-        type: Number,
-        required: true
-      },
-      itemsPerPage: {
+      pagesCount: {
         type: Number,
         required: true
       },
@@ -30,11 +26,6 @@
     data() {
       return {
         localPage: 1
-      }
-    },
-    computed: {
-      pagesCount() {
-        return Math.ceil(this.itemsCount / this.itemsPerPage);
       }
     },
     watch: {
