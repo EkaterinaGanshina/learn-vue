@@ -1,23 +1,31 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
-import Add from "./views/Add.vue";
+import IndexPage from "./views/IndexPage.vue";
+import UsersListPage from "./views/UsersListPage.vue";
+import AddUserPage from "./views/AddUserPage.vue";
+import EditUserPage from "./views/EditUserPage.vue";
 
 Vue.use(Router);
 
 export default new Router({
   mode: 'history',
-  linkActiveClass: 'active',
+  linkExactActiveClass: 'active',
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      component: IndexPage
+    },
+    {
+      path: "/users",
+      component: UsersListPage
     },
     {
       path: "/add",
-      name: "add",
-      component: Add
+      component: AddUserPage
+    },
+    {
+      path: "/edit/:id", // динамический путь
+      component: EditUserPage
     }
   ]
 });

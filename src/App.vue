@@ -6,10 +6,13 @@
                     <router-link to="/" class="navbar-brand">Vue.js</router-link>
                 </div>
                 <ul class="nav navbar-nav">
-                    <router-link tag="li" to="/" exact>
+                    <router-link tag="li" to="/">
                         <a>Главная</a>
                     </router-link>
-                    <router-link tag="li" to="/add" exact>
+                    <router-link tag="li" to="/users">
+                        <a>Пользователи</a>
+                    </router-link>
+                    <router-link tag="li" to="/add">
                         <a>Добавить пользователя</a>
                     </router-link>
                 </ul>

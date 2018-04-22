@@ -1,24 +1,31 @@
-<template v-cloak>
+<template>
     <table class="table table-striped users">
         <thead>
         <tr>
-            <th>№</th>
-            <th>Аватарка</th>
-            <th>Фамилия</th>
+            <th>ID</th>
             <th>Имя</th>
+            <th>Фамилия</th>
             <th>Возраст</th>
+            <th>E-mail</th>
+            <th>Телефон</th>
+            <th>Компания</th>
+            <th>Действия</th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(user, index) in users" :key="user.id" class="user">
-            <td>{{ index + 1 }}</td>
-            <td>
-                <img v-if="user.pic" :src="user.pic" class="pic">
-                <div v-else class="pic no-photo">no photo</div>
-            </td>
-            <td>{{ user.lastName }}</td>
+        <tr v-for="user in users" :key="user.id" class="user">
+            <td>{{ user.id }}</td>
             <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
             <td>{{ user.age }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.company }}</td>
+            <td>
+                <router-link :to="`/edit/${user.id}`" tag="button" class="btn btn-default btn-sm" title="Редактировать">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </router-link>
+            </td>
         </tr>
         </tbody>
     </table>
