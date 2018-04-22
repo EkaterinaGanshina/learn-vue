@@ -17,16 +17,19 @@
       itemsPerPage: {
         type: Number,
         required: true
+      },
+      currentPage: {
+        type: Number,
+        required: true
       }
     },
     model: {
-      prop: 'startIndex',
+      prop: 'currentPage',
       event: 'switchPage'
     },
-    data: function () {
+    data() {
       return {
-        currentPage: 1,
-        startFrom: 0 // с какого элемента начинается текущая страница
+        localPage: 1
       }
     },
     computed: {
@@ -35,15 +38,17 @@
       }
     },
     watch: {
-      currentPage() {
-        this.startFrom = (this.currentPage - 1) * this.itemsPerPage;
-        this.$emit('switchPage', this.startFrom);
+      localPage() {
+        this.$emit('switchPage', this.localPage);
       }
     },
     methods: {
       switchPage(event) {
-        this.currentPage = parseInt(event.target.textContent);
+        this.localPage = parseInt(event.target.textContent);
       }
+    },
+    created() {
+      this.localPage = this.currentPage;
     }
   }
 </script>

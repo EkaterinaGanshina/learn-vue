@@ -5,7 +5,8 @@
 
             <div v-if="!list.length" class="alert alert-warning">Загрузка...</div>
             <UsersList v-else :users="filteredList"/>
-            <Pagination :itemsCount="list.length" :itemsPerPage="itemsOnPage" v-model="startIndex"/>
+            <Pagination :itemsCount="list.length" :itemsPerPage="itemsPerPage" v-model="currentPage"/>
+            <ItemsPerPageSelect v-model="itemsPerPage"/>
         </div>
     </div>
 </template>
@@ -14,27 +15,36 @@
   import axios from 'axios';
   import UsersList from '@/components/UsersList.vue';
   import Pagination from '@/components/Pagination.vue';
+  import ItemsPerPageSelect from '@/components/ItemsPerPageSelect.vue';
 
   export default {
     components: {
       UsersList,
-      Pagination
+      Pagination,
+      ItemsPerPageSelect
     },
     data: function () {
       return {
         list: [],
         filteredList: [],
-        itemsOnPage: 10,
-        startIndex: 0
+        itemsPerPage: 10,
+        currentPage: 1
       }
     },
     computed: {
+      startIndex() {
+        return (this.currentPage - 1) * this.itemsPerPage;
+      },
       endIndex() {
-        return this.startIndex + this.itemsOnPage - 1;
+        return this.startIndex + this.itemsPerPage - 1;
       }
     },
     watch: {
-      startIndex: 'filterItems'
+      itemsPerPage() {
+        this.currentPage = 1;
+        this.filterItems();
+      },
+      currentPage: 'filterItems'
     },
     mounted() {
       this.loadUsers();
