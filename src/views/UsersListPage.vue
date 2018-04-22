@@ -10,11 +10,9 @@
 </template>
 
 <script>
-  import SmartTable from '@/components/SmartTable.vue';
-
   export default {
     components: {
-      SmartTable
+      'SmartTable': () => import('@/components/SmartTable.vue')
     },
     data() {
       return {

@@ -1,9 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 import IndexPage from "./views/IndexPage.vue";
-import UsersListPage from "./views/UsersListPage.vue";
-import AddUserPage from "./views/AddUserPage.vue";
-import EditUserPage from "./views/EditUserPage.vue";
 
 Vue.use(Router);
 
@@ -17,15 +14,15 @@ export default new Router({
     },
     {
       path: "/users",
-      component: UsersListPage
+      component: () => import('./views/UsersListPage.vue')
     },
     {
       path: "/add",
-      component: AddUserPage
+      component: () => import('./views/AddUserPage.vue')
     },
     {
       path: "/edit/:id", // динамический путь
-      component: EditUserPage
+      component: () => import('./views/EditUserPage.vue')
     }
   ]
 });

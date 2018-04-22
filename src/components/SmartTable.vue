@@ -8,15 +8,12 @@
 
 <script>
   import axios from 'axios';
-  import UsersList from '@/components/UsersList.vue';
-  import Pagination from '@/components/Pagination.vue';
-  import ItemsPerPageSelect from '@/components/ItemsPerPageSelect.vue';
 
   export default {
     components: {
-      UsersList,
-      Pagination,
-      ItemsPerPageSelect
+      'UsersList': () => import('@/components/UsersList.vue'),
+      'Pagination': () => import('@/components/Pagination.vue'),
+      'ItemsPerPageSelect': () => import('@/components/ItemsPerPageSelect.vue')
     },
     data: function () {
       return {
