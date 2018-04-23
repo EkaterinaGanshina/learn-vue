@@ -1,10 +1,8 @@
 <template>
     <div class="items-count">
         <span>Элементов на странице: </span>
-        <select @change="setItemsCount" class="form-control">
-            <option value="5">5</option>
-            <option value="10" selected>10</option>
-            <option value="20">20</option>
+        <select v-model="itemsPerPage" class="form-control">
+            <option v-for="option in options" :value="option" >{{ option }}</option>
         </select>
     </div>
 </template>
@@ -20,30 +18,21 @@
       itemsPerPage: {
         type: Number,
         required: true
-      }
-    },
-    data() {
-      return {
-        localItemsNumber: 10
+      },
+      options: {
+        type: Array,
+        default: () => [5, 10, 20]
       }
     },
     watch: {
-      localItemsNumber() {
-        this.$emit('switchItemsNumber', this.localItemsNumber)
+      itemsPerPage() {
+        this.$emit('switchItemsNumber', this.itemsPerPage)
       }
-    },
-    methods: {
-      setItemsCount(event) {
-        this.localItemsNumber = parseInt(event.target.value);
-      }
-    },
-    created() {
-      this.localItemsNumber = this.itemsPerPage;
     }
   }
 </script>
 
-<style>
+<style scoped>
     .items-count,
     .items-count span,
     .items-count select {

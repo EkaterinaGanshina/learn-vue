@@ -4,13 +4,13 @@
             <div class="col-xs-4 col-md-3">
                 <div class="form-group">
                     <label for="id-readonly">ID</label>
-                    <input v-model.trim="localUser.id" type="text" class="form-control" id="id-readonly" readonly>
+                    <input :value="localUser.id" type="text" class="form-control" id="id-readonly" readonly>
                 </div>
             </div>
             <div class="col-xs-8 col-md-9">
                 <div class="form-group">
                     <label for="registered-readonly">Зарегистрирован</label>
-                    <input v-model.trim="localUser.registered" type="text" class="form-control" id="registered-readonly" readonly>
+                    <input v-model.trim="localUser.registered" type="text" class="form-control" id="registered-readonly">
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label for="edit-email">E-mail</label>
-            <input v-model.trim="localUser.email" type="text" class="form-control" id="edit-email" required>
+            <input v-model.trim="localUser.email" type="email" class="form-control" id="edit-email" required>
         </div>
         <div class="form-group">
             <label for="edit-phone">Телефон</label>
@@ -67,7 +67,7 @@
       }
     },
     data: () => ({
-        localUser: {}
+        localUser: null
       }
     ),
     watch: {

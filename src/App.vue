@@ -28,5 +28,5 @@
 </template>
 
 <script>
-    import '../public/css/style.css';
+    import '@/assets/css/style.css';
 </script>

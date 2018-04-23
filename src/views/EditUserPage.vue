@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import axios from '@/axios.js';
 
   export default {
     name: "edit",
@@ -31,8 +31,11 @@
       },
 
       loadUrl() {
-        return `http://localhost:3004/users/${this.id}`
+        return `/users/${this.id}`
       }
+    },
+    mounted() {
+      this.loadUser();
     },
     methods: {
       loadUser() {
@@ -67,9 +70,6 @@
       redirectToList() {
         this.$router.push('/users');
       }
-    },
-    mounted() {
-      this.loadUser();
     }
   };
 </script>

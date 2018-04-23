@@ -11,16 +11,16 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import axios from '@/axios.js';
 
   export default {
-    name: "add",
+    name: "add-users-page",
     components: {
       'UserForm': () => import('@/components/UserForm.vue')
     },
     data: function () {
       return {
-        user: {}
+        user: null
       }
     },
     methods: {
@@ -32,7 +32,7 @@
         const now = new Date();
         this.user.registered = now.toLocaleDateString();
 
-        axios.post('http://localhost:3004/users', this.user)
+        axios.post('/users', this.user)
           .then(() => {
             console.info('Пользователь создан');
             this.redirectToList();
@@ -43,7 +43,6 @@
       },
 
       cancelCreate() {
-        this.user = {};
         this.redirectToList();
       }
     }
