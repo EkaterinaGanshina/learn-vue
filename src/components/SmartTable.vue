@@ -46,20 +46,24 @@
 </template>
 
 <script>
-  import axios from '@/axios.js';
   import proschet from 'proschet';
 
   export default {
+    name: 'smart-table',
     components: {
       'TableSearch': () => import('@/components/TableSearch.vue'),
       'Pagination': () => import('@/components/Pagination.vue'),
       'ItemsPerPageSelect': () => import('@/components/ItemsPerPageSelect.vue'),
     },
-    name: 'smart-table',
+    props: {
+      list: {
+        type: Array,
+        required: true
+      }
+    },
     data: function () {
       return {
         userDeclensions: ['пользователь', 'пользователя', 'пользователей'],
-        list: [],
         searchQuery: '',
         searchResults: [],
         itemsPerPage: 10,
@@ -97,20 +101,7 @@
 
       searchQuery: 'search'
     },
-    mounted() {
-      this.loadUsers();
-    },
     methods: {
-      loadUsers() {
-        axios.get('/users')
-          .then((response) => {
-            this.list = response.data;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      },
-
       search() {
         this.searchResults = this.list.filter(item => {
           for (let key in item) {

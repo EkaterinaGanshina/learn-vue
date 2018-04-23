@@ -1,23 +1,23 @@
 <template>
     <ul class="pagination">
-        <li :class="{ disabled: prevDisabled }">
-            <a @click.prevent="decrementPage" data-btn="first" href="#">first</a>
+        <li :class="{ disabled: localPage === 1 }">
+            <a @click.prevent="switchPage(1)" href="#">first</a>
         </li>
 
-        <li :class="{ disabled: prevDisabled }">
-            <a @click.prevent="decrementPage" data-btn="decrement" href="#">prev</a>
+        <li :class="{ disabled: localPage === 1 }">
+            <a @click.prevent="decrementPage()" href="#">prev</a>
         </li>
 
         <li v-for="page in pagesCount" :class="{ active: page === currentPage }" :key="page">
-            <a @click.prevent="switchPage" href="#">{{ page }}</a>
+            <a @click.prevent="switchPage(page)" href="#">{{ page }}</a>
         </li>
 
-        <li :class="{ disabled: nextDisabled }">
-            <a @click.prevent="incrementPage" data-btn="increment" href="#">next</a>
+        <li :class="{ disabled: localPage === pagesCount }">
+            <a @click.prevent="incrementPage()" href="#">next</a>
         </li>
 
-        <li :class="{ disabled: nextDisabled }">
-            <a @click.prevent="incrementPage" data-btn="last" href="#">last</a>
+        <li :class="{ disabled: localPage === pagesCount }">
+            <a @click.prevent="switchPage(pagesCount)" href="#">last</a>
         </li>
     </ul>
 </template>
@@ -41,10 +41,7 @@
     },
     data() {
       return {
-        localPage: 1,
-        prevDisabled: true,
-        nextDisabled: false,
-
+        localPage: 1
       }
     },
     watch: {
@@ -56,52 +53,20 @@
       this.localPage = this.currentPage;
     },
     methods: {
-      switchPage(event) {
-        this.localPage = parseInt(event.target.textContent);
-        if (this.localPage === 1) {
-          this.prevDisabled = true;
-          this.nextDisabled = false;
-        } else if (this.localPage === this.pagesCount) {
-          this.prevDisabled = false;
-          this.nextDisabled = true;
-        } else {
-          this.prevDisabled = false;
-          this.nextDisabled = false;
-        }
+      switchPage(page) {
+        this.localPage = page;
       },
 
-      decrementPage(event) {
+      decrementPage() {
         // если уже находимся на первой странице
         if (this.localPage === 1) return false;
-
-        // проверяем, какая кнопка нажата - "первая страница" или "предыдущая страница"
-        if (event.target.dataset.btn === 'first') {
-          this.localPage = 1;
-        } else {
-          this.localPage--;
-        }
-
-        this.nextDisabled = false;
-        if (this.localPage === 1) {
-          this.prevDisabled = true;
-        }
+        this.localPage--;
       },
 
-      incrementPage(event) {
+      incrementPage() {
         // если уже находимся на последней странице
         if (this.localPage === this.pagesCount) return false;
-
-        // проверяем, какая кнопка нажата - "последняя страница" или "следующая страница"
-        if (event.target.dataset.btn === 'last') {
-          this.localPage = this.pagesCount;
-        } else {
-          this.localPage++;
-        }
-
-        this.prevDisabled = false;
-        if (this.localPage === this.pagesCount) {
-          this.nextDisabled = true;
-        }
+        this.localPage++;
       }
     }
   }
