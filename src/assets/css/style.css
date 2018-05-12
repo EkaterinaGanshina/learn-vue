@@ -43,3 +43,7 @@ button {
     cursor: default;
     line-height: 1;
 }
+
+.edit-user {
+    margin-bottom: 20px;
+}

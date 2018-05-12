@@ -13,7 +13,7 @@
                     <th>ID</th>
                     <th>Имя</th>
                     <th>Фамилия</th>
-                    <th>Возраст</th>
+                    <th>День рождения</th>
                     <th>E-mail</th>
                     <th>Телефон</th>
                     <th>Компания</th>
@@ -25,7 +25,7 @@
                     <td>{{ user.id }}</td>
                     <td>{{ user.firstName }}</td>
                     <td>{{ user.lastName }}</td>
-                    <td>{{ user.age }}</td>
+                    <td>{{ user.birthday }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.phone }}</td>
                     <td>{{ user.company }}</td>
@@ -46,88 +46,95 @@
 </template>
 
 <script>
-  import proschet from 'proschet';
+import proschet from "proschet";
 
-  export default {
-    name: 'smart-table',
-    components: {
-      'TableSearch': () => import('@/components/TableSearch.vue'),
-      'Pagination': () => import('@/components/Pagination.vue'),
-      'ItemsPerPageSelect': () => import('@/components/ItemsPerPageSelect.vue'),
+export default {
+  name: "smart-table",
+  components: {
+    TableSearch: () => import("@/components/TableSearch.vue"),
+    Pagination: () => import("@/components/Pagination.vue"),
+    ItemsPerPageSelect: () => import("@/components/ItemsPerPageSelect.vue")
+  },
+  props: {
+    list: {
+      type: Array,
+      required: true
+    }
+  },
+  data: function() {
+    return {
+      userDeclensions: ["пользователь", "пользователя", "пользователей"],
+      searchQuery: "",
+      searchResults: [],
+      itemsPerPage: 10,
+      currentPage: 1
+    };
+  },
+  computed: {
+    declension() {
+      const getUsers = proschet(this.userDeclensions);
+      return getUsers(this.list.length);
     },
-    props: {
-      list: {
-        type: Array,
-        required: true
-      }
+
+    startIndex() {
+      return (this.currentPage - 1) * this.itemsPerPage;
     },
-    data: function () {
-      return {
-        userDeclensions: ['пользователь', 'пользователя', 'пользователей'],
-        searchQuery: '',
-        searchResults: [],
-        itemsPerPage: 10,
-        currentPage: 1
-      }
+
+    endIndex() {
+      return this.startIndex + this.itemsPerPage;
     },
-    computed: {
-      declension() {
-        const getUsers = proschet(this.userDeclensions);
-        return getUsers(this.list.length);
-      },
 
-      startIndex() {
-        return (this.currentPage - 1) * this.itemsPerPage;
-      },
-
-      endIndex() {
-        return this.startIndex + this.itemsPerPage;
-      },
-
-      pagesCount() {
-        let itemsCount = this.searchResults.length ? this.searchResults.length : this.list.length;
-        return Math.ceil(itemsCount / this.itemsPerPage);
-      },
-
-      filteredList() {
-        let data = this.searchResults.length ? this.searchResults : this.list;
-        return data.slice(this.startIndex, this.endIndex);
-      }
+    pagesCount() {
+      let itemsCount = this.searchResults.length
+        ? this.searchResults.length
+        : this.list.length;
+      return Math.ceil(itemsCount / this.itemsPerPage);
     },
-    watch: {
-      itemsPerPage() {
-        this.currentPage = 1;
-      },
 
-      searchQuery: 'search'
+    filteredList() {
+      let data = this.searchResults.length ? this.searchResults : this.list;
+      return data.slice(this.startIndex, this.endIndex);
+    }
+  },
+  watch: {
+    itemsPerPage() {
+      this.currentPage = 1;
     },
-    methods: {
-      search() {
-        this.searchResults = this.list.filter(item => {
-          for (let key in item) {
-            if (item[key].toString().toLowerCase().includes(this.searchQuery)) {
-              return true;
-            }
+
+    searchQuery: "search"
+  },
+  methods: {
+    search() {
+      this.searchResults = this.list.filter(item => {
+        for (let key in item) {
+          if (
+            item[key]
+              .toString()
+              .toLowerCase()
+              .includes(this.searchQuery)
+          ) {
+            return true;
           }
+        }
 
-          return false;
-        });
-      }
-    },
+        return false;
+      });
+    }
   }
+};
 </script>
 
 <style scoped>
-    .table-header {
-        margin: 20px 0;
-        padding: 0 5px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+.table-header {
+  margin: 20px 0;
+  padding: 0 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .table-header .str-count {
-        font-weight: 700;
-        font-size: 14px;
-    }
+.table-header .str-count {
+  font-weight: 700;
+  font-size: 14px;
+}
 </style>

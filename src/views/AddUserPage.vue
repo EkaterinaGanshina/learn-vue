@@ -1,6 +1,6 @@
 <template>
   <div class="col-xs-8 col-xs-offset-2">
-    <div class="add">
+    <div class="edit-user">
       <h1 class="text-center">Добавить пользователя</h1>
 
       <UserForm v-model="user"/>
@@ -11,40 +11,44 @@
 </template>
 
 <script>
-  import axios from '@/axios.js';
+import axios from "@/axios.js";
+import UserForm from "@/components/UserForm.vue";
 
-  export default {
-    name: "add-users-page",
-    components: {
-      'UserForm': () => import('@/components/UserForm.vue')
-    },
-    data: function () {
-      return {
-        user: null
+export default {
+  name: "add-users-page",
+  components: {
+    UserForm
+  },
+  data: function() {
+    return {
+      user: {}
+    };
+  },
+  methods: {
+    createUser() {
+      this.$validator.validateAll();
+      if (!this.errors.any()) {
+        alert("Что-то пошло не так. Проверьте, правильно ли заполнены поля");
+        return;
       }
+
+      const now = new Date();
+      this.user.registered = now.toLocaleDateString();
+
+      axios
+        .post("/users", this.user)
+        .then(response => {
+          console.info("Пользователь создан");
+          this.$router.push("/edit/" + response.data.id);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     },
-    methods: {
-      redirectToList() {
-        this.$router.push('/users');
-      },
 
-      createUser() {
-        const now = new Date();
-        this.user.registered = now.toLocaleDateString();
-
-        axios.post('/users', this.user)
-          .then(() => {
-            console.info('Пользователь создан');
-            this.redirectToList();
-          })
-          .catch((error) => {
-            console.error(error)
-          })
-      },
-
-      cancelCreate() {
-        this.redirectToList();
-      }
+    cancelCreate() {
+      this.$router.push("/users");
     }
-  };
+  }
+};
 </script>
