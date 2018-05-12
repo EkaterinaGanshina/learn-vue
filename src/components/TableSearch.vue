@@ -12,25 +12,24 @@
 </template>
 
 <script>
-  export default {
-    name: 'TableSearch',
-    model: {
-      prop: 'searchQuery',
-      event: 'search'
-    },
-    data() {
-      return {
-        query: ''
-      }
-    },
-    watch: {
-      query: 'sendSearchQuery'
-    },
-    methods: {
-      sendSearchQuery() {
-        this.query = this.query.length ? this.query.toLowerCase() : '';
-        this.$emit('search', this.query);
-      }
+export default {
+  name: "TableSearch",
+  model: {
+    prop: "searchQuery",
+    event: "search"
+  },
+  data() {
+    return {
+      query: ""
+    };
+  },
+  watch: {
+    query: "sendSearchQuery"
+  },
+  methods: {
+    sendSearchQuery() {
+      this.$emit("search", this.query.length ? this.query.toLowerCase() : "");
     }
   }
+};
 </script>
