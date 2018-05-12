@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 0,
-      "isActive": false,
+      "isActive": true,
       "balance": "$2060.49",
       "picture": "http://res.cloudinary.com/ganshina/image/upload/v1526145385/pefbscj4qvjtqfs7y0ir.jpg",
       "birthday": "07.01.1976",

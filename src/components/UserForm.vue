@@ -78,6 +78,12 @@
             <label for="edit-about">Биография</label>
             <vue-editor v-model="localUser.about" id="edit-about" :editorToolbar="customToolbar"></vue-editor>
         </div>
+
+        <div class="form-group">
+            <SimpleCheckbox v-model="localUser.isActive">
+                Пользователь активен
+            </SimpleCheckbox>
+        </div>
     </form>
 </template>
 
@@ -103,6 +109,7 @@ export default {
   components: {
     Datepicker: () => import("@/components/Datepicker.vue"),
     UploadAvatar: () => import("@/components/UploadAvatar.vue"),
+    SimpleCheckbox: () => import("@/components/SimpleCheckbox.vue"),
     VueEditor
   },
   data() {
