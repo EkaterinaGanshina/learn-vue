@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import axios from "@/axios.js";
 import proschet from "proschet";
 
 export default {
@@ -56,13 +57,14 @@ export default {
     ItemsPerPageSelect: () => import("@/components/ItemsPerPageSelect.vue")
   },
   props: {
-    list: {
-      type: Array,
+    url: {
+      type: String,
       required: true
     }
   },
   data: function() {
     return {
+      list: [],
       userDeclensions: ["пользователь", "пользователя", "пользователей"],
       searchQuery: "",
       searchResults: [],
@@ -103,7 +105,21 @@ export default {
 
     searchQuery: "search"
   },
+  mounted() {
+    this.loadItems();
+  },
   methods: {
+    loadItems() {
+      axios
+        .get(this.url)
+        .then(response => {
+          this.list = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+
     search() {
       this.searchResults = this.list.filter(item => {
         for (let key in item) {

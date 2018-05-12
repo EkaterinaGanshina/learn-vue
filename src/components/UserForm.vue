@@ -15,26 +15,37 @@
             </div>
         </div>
 
-        <div :class="[{ 'has-error': errors.has('firstName') }, 'form-group']">
-            <label for="edit-firstname">Имя</label>
-            <input v-model.trim="localUser.firstName"
-                   v-validate="'required|alpha_dash'"
-                   type="text" class="form-control"
-                   id="edit-firstname" name="firstName">
-            <span v-show="errors.has('firstName')" class="control-label">{{ errors.first('firstName') }}</span>
+        <div class="row">
+            <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                    <label for="edit-pic">Аватарка</label>
+                    <UploadAvatar v-model="localUser.picture" id="edit-pic"/>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-9">
+                <div :class="[{ 'has-error': errors.has('firstName') }, 'form-group']">
+                    <label for="edit-firstname">Имя</label>
+                    <input v-model.trim="localUser.firstName"
+                           v-validate="'required|alpha_dash'"
+                           type="text" class="form-control"
+                           id="edit-firstname" name="firstName">
+                    <span v-show="errors.has('firstName')" class="control-label">{{ errors.first('firstName') }}</span>
+                </div>
+                <div class="form-group">
+                    <label for="edit-lastname">Фамилия</label>
+                    <input v-model.trim="localUser.lastName"
+                           v-validate="'required|alpha_dash'"
+                           type="text" class="form-control"
+                           id="edit-lastname" name="lasName">
+                    <span v-show="errors.has('lastName')" class="control-label">{{ errors.first('firstName') }}</span>
+                </div>
+                <div class="form-group">
+                    <label for="edit-birthday">Дата рождения</label>
+                    <Datepicker v-model="localUser.birthday" id="edit-birthday"/>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="edit-lastname">Фамилия</label>
-            <input v-model.trim="localUser.lastName"
-                   v-validate="'required|alpha_dash'"
-                   type="text" class="form-control"
-                   id="edit-lastname" name="lasName">
-            <span v-show="errors.has('lastName')" class="control-label">{{ errors.first('firstName') }}</span>
-        </div>
-        <div class="form-group">
-            <label for="edit-birthday">Дата рождения</label>
-            <Datepicker v-model="localUser.birthday" id="edit-birthday"/>
-        </div>
+
         <div class="form-group">
             <label for="edit-email">E-mail</label>
             <input v-model.trim="localUser.email"
@@ -91,6 +102,7 @@ export default {
   },
   components: {
     Datepicker: () => import("@/components/Datepicker.vue"),
+    UploadAvatar: () => import("@/components/UploadAvatar.vue"),
     VueEditor
   },
   data() {

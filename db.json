@@ -4,7 +4,7 @@
       "id": 0,
       "isActive": false,
       "balance": "$2060.49",
-      "picture": "http://placehold.it/128x128",
+      "picture": "http://res.cloudinary.com/ganshina/image/upload/v1526145385/pefbscj4qvjtqfs7y0ir.jpg",
       "birthday": "07.01.1976",
       "accessLevel": "guest",
       "firstName": "Queen",
@@ -68,7 +68,7 @@
       "id": 4,
       "isActive": true,
       "balance": "$3469.52",
-      "picture": "http://placehold.it/128x128",
+      "picture": "http://res.cloudinary.com/ganshina/image/upload/v1526148386/qr10drvai2t3ruwswnk5.jpg",
       "birthday": "11.05.1986",
       "accessLevel": "admin",
       "firstName": "James",
@@ -77,14 +77,14 @@
       "email": "james.cunningham@chorizon.ca",
       "phone": "+7 (809) 485-3357",
       "address": "424 Keap Street, Grazierville, Rhode Island, 6507",
-      "about": "Ipsum pariatur et aliqua est Lorem elit ullamco nulla. Cupidatat cillum aliquip nostrud aute veniam ullamco cupidatat officia mollit ipsum. Dolor sint velit ut velit proident ex nostrud sit ipsum enim sunt ullamco duis reprehenderit. Irure eu occaecat voluptate anim quis pariatur sit quis esse incididunt elit ad officia amet. Adipisicing sint magna dolor officia dolore dolor dolore occaecat ea culpa laboris ut cupidatat. Voluptate officia esse labore eiusmod.",
+      "about": "<p>Ipsum pariatur et aliqua est Lorem elit ullamco nulla. Cupidatat cillum aliquip nostrud aute veniam ullamco cupidatat officia mollit ipsum. Dolor sint velit ut velit proident ex nostrud sit ipsum enim sunt ullamco duis reprehenderit. Irure eu occaecat voluptate anim quis pariatur sit quis esse incididunt elit ad officia amet. Adipisicing sint magna dolor officia dolore dolor dolore occaecat ea culpa laboris ut cupidatat. Voluptate officia esse labore eiusmod.</p>",
       "registered": "01.01.2017"
     },
     {
       "id": 5,
       "isActive": true,
       "balance": "$2559.17",
-      "picture": "http://placehold.it/128x128",
+      "picture": "http://res.cloudinary.com/ganshina/image/upload/v1526148830/fgdmzbu14sgbcioxi6ea.jpg",
       "birthday": "27.01.1976",
       "accessLevel": "guest",
       "firstName": "Roseann",
@@ -93,7 +93,7 @@
       "email": "roseann.osborn@gracker.com",
       "phone": "+7 (999) 589-2639",
       "address": "525 McKibbin Street, Hannasville, Kentucky, 4804",
-      "about": "Dolore eiusmod duis qui laborum do deserunt occaecat magna in. Cillum enim sit anim eu et ipsum anim voluptate ea ullamco tempor ipsum reprehenderit sit. Ullamco sunt laboris dolor laborum laborum irure ex sint eiusmod. Mollit veniam labore id dolore culpa tempor reprehenderit adipisicing commodo aliqua.",
+      "about": "<p>Dolore eiusmod duis qui laborum do deserunt occaecat magna in. Cillum enim sit anim eu et ipsum anim voluptate ea ullamco tempor ipsum reprehenderit sit. Ullamco sunt laboris dolor laborum laborum irure ex sint eiusmod. Mollit veniam labore id dolore culpa tempor reprehenderit adipisicing commodo aliqua.</p>",
       "registered": "06.05.2018"
     },
     {
