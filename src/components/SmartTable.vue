@@ -10,31 +10,35 @@
             <table class="table table-striped users">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Имя</th>
-                    <th>Фамилия</th>
-                    <th>День рождения</th>
-                    <th>E-mail</th>
-                    <th>Телефон</th>
-                    <th>Компания</th>
-                    <th>Действия</th>
+                    <slot name="table-header">
+                        <th>ID</th>
+                        <th>Имя</th>
+                        <th>Фамилия</th>
+                        <th>День рождения</th>
+                        <th>E-mail</th>
+                        <th>Телефон</th>
+                        <th>Компания</th>
+                        <th>Действия</th>
+                    </slot>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="user in filteredList" :key="user.id" class="user">
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.firstName }}</td>
-                    <td>{{ user.lastName }}</td>
-                    <td>{{ user.birthday }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.phone }}</td>
-                    <td>{{ user.company }}</td>
-                    <td>
-                        <router-link :to="`/edit/${user.id}`" tag="button" class="btn btn-default btn-sm"
-                                     title="Редактировать">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </router-link>
-                    </td>
+                    <slot name="table-row" v-bind="user">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.firstName }}</td>
+                        <td>{{ user.lastName }}</td>
+                        <td>{{ user.birthday }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.phone }}</td>
+                        <td>{{ user.company }}</td>
+                        <td>
+                            <router-link :to="`/edit/${user.id}`" tag="button" class="btn btn-default btn-sm"
+                                         title="Редактировать">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </router-link>
+                        </td>
+                    </slot>
                 </tr>
                 </tbody>
             </table>

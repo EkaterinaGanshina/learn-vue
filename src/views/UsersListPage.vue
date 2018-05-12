@@ -3,7 +3,7 @@
         <div class="users-list">
             <h1 class="text-center">Список пользователей</h1>
 
-            <SmartTable :url="urlGetUsers"/>
+            <SmartTable :url="urlGetUsers"></SmartTable>
         </div>
     </div>
 </template>

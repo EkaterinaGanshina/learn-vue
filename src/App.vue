@@ -15,6 +15,9 @@
                     <router-link tag="li" to="/add">
                         <a>Добавить пользователя</a>
                     </router-link>
+                    <router-link tag="li" to="/phonebook">
+                        <a>Телефонный справочник</a>
+                    </router-link>
                 </ul>
             </div>
         </nav>
@@ -28,5 +31,5 @@
 </template>
 
 <script>
-    import '@/assets/css/style.css';
+import "@/assets/css/style.css";
 </script>
