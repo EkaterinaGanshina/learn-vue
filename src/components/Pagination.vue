@@ -1,10 +1,10 @@
 <template>
     <ul class="pagination">
-        <li :class="{ disabled: localPage === 1 || pagesCount === 0 }">
+        <li :class="{ disabled: isBtnDisabled(1) }">
             <a @click.prevent="switchPage(1)" href="#">first</a>
         </li>
 
-        <li :class="{ disabled: localPage === 1 || pagesCount === 0 }">
+        <li :class="{ disabled: isBtnDisabled(1) }">
             <a @click.prevent="decrementPage()" href="#">prev</a>
         </li>
 
@@ -12,11 +12,11 @@
             <a @click.prevent="switchPage(page)" href="#">{{ page }}</a>
         </li>
 
-        <li :class="{ disabled: localPage === pagesCount || pagesCount === 0 }">
+        <li :class="{ disabled: isBtnDisabled(pagesCount) }">
             <a @click.prevent="incrementPage()" href="#">next</a>
         </li>
 
-        <li :class="{ disabled: localPage === pagesCount || pagesCount === 0 }">
+        <li :class="{ disabled: isBtnDisabled(pagesCount) }">
             <a @click.prevent="switchPage(pagesCount)" href="#">last</a>
         </li>
     </ul>
@@ -60,13 +60,17 @@ export default {
     decrementPage() {
       // если уже находимся на первой странице
       if (this.localPage === 1) return false;
-      this.localPage--;
+      this.localPage -= 1;
     },
 
     incrementPage() {
       // если уже находимся на последней странице
       if (this.localPage === this.pagesCount) return false;
-      this.localPage++;
+      this.localPage += 1;
+    },
+
+    isBtnDisabled(pageNumber) {
+      return this.localPage === pageNumber || this.pagesCount === 0;
     }
   }
 };

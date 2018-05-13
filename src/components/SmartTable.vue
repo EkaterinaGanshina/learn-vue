@@ -3,7 +3,9 @@
         <div v-if="!list.length" class="alert alert-warning">Загрузка...</div>
         <template v-else>
             <div class="table-header">
-                <div class="str-count">Всего {{ total }} {{ declension }}</div>
+                <div class="str-count">
+                    Всего {{ totalItemsStr }}<span v-show="searchTotal">, найдено {{ foundItemsStr }}</span>
+                </div>
                 <TableSearch v-model="searchQuery"/>
             </div>
 
@@ -23,10 +25,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-if="this.searchQuery.length && this.searchResults.length === 0">
+                <tr v-if="isNotFoundShown">
                     <td colspan="8">Ничего не найдено</td>
                 </tr>
-                <tr v-else v-for="user in filteredList" :key="user.id" class="user">
+                <tr v-else v-for="user in list" :key="user.id" class="user">
                     <slot name="table-row" v-bind="user">
                         <td>{{ user.id }}</td>
                         <td>{{ user.firstName }}</td>
@@ -77,43 +79,53 @@ export default {
       searchTotal: 0,
       userDeclensions: ["пользователь", "пользователя", "пользователей"],
       searchQuery: "",
-      searchResults: [],
       itemsPerPage: 10,
       currentPage: 1
     };
   },
   computed: {
-    declension() {
+    totalItemsStr() {
       const getUsers = proschet(this.userDeclensions);
-      return getUsers(this.total);
+      return `${this.total} ${getUsers(this.total)}`;
+    },
+
+    foundItemsStr() {
+      const getUsers = proschet(this.userDeclensions);
+      return `${this.searchTotal} ${getUsers(this.searchTotal)}`;
+    },
+
+    // показывать ли строку таблицы "Ничего не найдено"
+    isNotFoundShown() {
+      return this.searchQuery && this.searchTotal === 0;
+    },
+
+    itemsCount() {
+      return this.searchQuery ? this.searchTotal : this.total;
     },
 
     pagesCount() {
-      const itemsCount = this.searchQuery.length
-        ? this.searchTotal
-        : this.total;
-      return Math.ceil(itemsCount / this.itemsPerPage);
+      return Math.ceil(this.itemsCount / this.itemsPerPage);
     },
 
-    filteredList() {
-      return this.searchQuery.length ? this.searchResults : this.list;
+    requestParams() {
+      let config = {
+        params: {
+          _page: this.currentPage,
+          _limit: this.itemsPerPage
+        }
+      };
+
+      if (this.searchQuery) {
+        config.params.q = this.searchQuery;
+      }
+
+      return config;
     }
   },
   watch: {
-    itemsPerPage() {
-      this.currentPage = 1;
-    },
-
-    // переключение страницы (пагинация)
-    currentPage() {
-      this.searchQuery.length ? this.search() : this.loadItems();
-    },
-
-    // изменение поискового запроса (поиск)
-    searchQuery() {
-      this.currentPage = 1;
-      this.searchQuery.length ? this.search() : this.loadItems();
-    }
+    currentPage: "loadItems", // переключение страницы (пагинация)
+    itemsPerPage: "refreshTable", // изменяем количество эл-тов в таблице
+    searchQuery: "refreshTable" // изменение поискового запроса (поиск)
   },
   mounted() {
     this.loadItems();
@@ -121,32 +133,24 @@ export default {
   methods: {
     loadItems() {
       axios
-        .get(
-          `${this.url}?_page=${this.currentPage}&_limit=${this.itemsPerPage}`
-        )
+        .get(this.url, this.requestParams)
         .then(response => {
           this.list = response.data;
-          this.total = response.headers["x-total-count"];
+
+          if (this.searchQuery) {
+            this.searchTotal = response.headers["x-total-count"];
+          } else {
+            this.total = response.headers["x-total-count"];
+          }
         })
         .catch(error => {
           console.error(error);
         });
     },
 
-    search() {
-      axios
-        .get(
-          `${this.url}?q=${this.searchQuery}&_page=${this.currentPage}&_limit=${
-            this.itemsPerPage
-          }`
-        )
-        .then(response => {
-          this.searchResults = response.data;
-          this.searchTotal = response.headers["x-total-count"];
-        })
-        .catch(error => {
-          console.error(error);
-        });
+    refreshTable() {
+      this.currentPage = 1;
+      this.loadItems();
     }
   }
 };

@@ -19,7 +19,7 @@ export default {
   props: {
     picture: {
       type: String,
-      default: "http://placehold.it/128x128"
+      require: true
     }
   },
   data() {

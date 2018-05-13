@@ -21,13 +21,27 @@ export default {
   },
   data: function() {
     return {
-      user: {}
+      // заготовка для нового пользователя
+      user: {
+        isActive: true,
+        balance: "",
+        picture: "http://placehold.it/128x128",
+        birthday: "",
+        accessLevel: "user",
+        firstName: "",
+        lastName: "",
+        company: "",
+        email: "",
+        phone: "",
+        address: "",
+        about: ""
+      }
     };
   },
   methods: {
     createUser() {
       this.$validator.validateAll();
-      if (!this.errors.any()) {
+      if (this.errors.any()) {
         alert("Что-то пошло не так. Проверьте, правильно ли заполнены поля");
         return;
       }

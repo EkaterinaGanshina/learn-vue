@@ -46,6 +46,12 @@ export default {
     },
 
     saveUser() {
+      this.$validator.validateAll();
+      if (this.errors.any()) {
+        alert("Что-то пошло не так. Проверьте, правильно ли заполнены поля");
+        return;
+      }
+
       axios
         .patch(this.loadUrl, this.user)
         .then(() => {
