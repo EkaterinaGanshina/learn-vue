@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     sendSearchQuery() {
-      this.$emit("search", this.query.toLowerCase);
+      this.$emit("search", this.query.toLowerCase());
     }
   }
 };

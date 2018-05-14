@@ -59,13 +59,13 @@ export default {
 
     decrementPage() {
       // если уже находимся на первой странице
-      if (this.localPage === 1) return false;
+      if (this.localPage === 1) return;
       this.localPage -= 1;
     },
 
     incrementPage() {
       // если уже находимся на последней странице
-      if (this.localPage === this.pagesCount) return false;
+      if (this.localPage === this.pagesCount) return;
       this.localPage += 1;
     },
 

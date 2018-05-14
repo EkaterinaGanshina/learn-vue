@@ -2,7 +2,7 @@
     <div class="items-count">
         <span>Элементов на странице: </span>
         <select v-model="itemsPerPage" class="form-control">
-            <option v-for="option in options" :value="option.value" :key="option.id">{{ option.value }}</option>
+            <option v-for="(option, index) in options" :value="option" :key="index">{{ option }}</option>
         </select>
     </div>
 </template>
@@ -21,20 +21,7 @@ export default {
     },
     options: {
       type: Array,
-      default: () => [
-        {
-          id: 0,
-          value: 5
-        },
-        {
-          id: 1,
-          value: 10
-        },
-        {
-          id: 2,
-          value: 20
-        }
-      ]
+      default: () => [5, 10, 20]
     }
   },
   watch: {

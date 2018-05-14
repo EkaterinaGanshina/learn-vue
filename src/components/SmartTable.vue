@@ -1,11 +1,9 @@
 <template>
     <div class="smart-table">
-        <div v-if="!list.length" class="alert alert-warning">Загрузка...</div>
+        <div v-if="!searchQuery && !list.length" class="alert alert-warning">Загрузка...</div>
         <template v-else>
             <div class="table-header">
-                <div class="str-count">
-                    Всего {{ totalItemsStr }}<span v-show="searchTotal">, найдено {{ foundItemsStr }}</span>
-                </div>
+                <div class="str-count">{{ totalItemsStr }}</div>
                 <TableSearch v-model="searchQuery"/>
             </div>
 
@@ -86,12 +84,11 @@ export default {
   computed: {
     totalItemsStr() {
       const getUsers = proschet(this.userDeclensions);
-      return `${this.total} ${getUsers(this.total)}`;
-    },
-
-    foundItemsStr() {
-      const getUsers = proschet(this.userDeclensions);
-      return `${this.searchTotal} ${getUsers(this.searchTotal)}`;
+      const found =
+        this.searchQuery && this.searchTotal
+          ? `, найдено ${this.searchTotal} ${getUsers(this.searchTotal)}`
+          : "";
+      return `Всего ${this.total} ${getUsers(this.total)}${found}`;
     },
 
     // показывать ли строку таблицы "Ничего не найдено"
@@ -107,7 +104,7 @@ export default {
       return Math.ceil(this.itemsCount / this.itemsPerPage);
     },
 
-    requestParams() {
+    requestConfig() {
       let config = {
         params: {
           _page: this.currentPage,
@@ -124,7 +121,7 @@ export default {
   },
   watch: {
     currentPage: "loadItems", // переключение страницы (пагинация)
-    itemsPerPage: "refreshTable", // изменяем количество эл-тов в таблице
+    itemsPerPage: "refreshTable", // изменение количества эл-тов в таблице
     searchQuery: "refreshTable" // изменение поискового запроса (поиск)
   },
   mounted() {
@@ -133,14 +130,14 @@ export default {
   methods: {
     loadItems() {
       axios
-        .get(this.url, this.requestParams)
+        .get(this.url, this.requestConfig)
         .then(response => {
           this.list = response.data;
 
           if (this.searchQuery) {
-            this.searchTotal = response.headers["x-total-count"];
+            this.searchTotal = Number(response.headers["x-total-count"]);
           } else {
-            this.total = response.headers["x-total-count"];
+            this.total = Number(response.headers["x-total-count"]);
           }
         })
         .catch(error => {
