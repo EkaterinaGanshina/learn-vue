@@ -36,7 +36,7 @@
       "id": 2,
       "isActive": false,
       "balance": "$2389.67",
-      "picture": "http://placehold.it/128x128",
+      "picture": "http://res.cloudinary.com/ganshina/image/upload/v1526333269/zhjbpiusnidavc4idah9.jpg",
       "birthday": "24.08.1963",
       "accessLevel": "admin",
       "firstName": "Newton",
@@ -45,7 +45,7 @@
       "email": "newton.hatfield@dragbot.co.uk",
       "phone": "+7 (809) 551-2762",
       "address": "416 Green Street, Darbydale, Mississippi, 8882",
-      "about": "Exercitation laborum tempor excepteur id mollit. Reprehenderit consequat laboris velit magna reprehenderit eu. Et veniam minim eiusmod exercitation elit duis nostrud ea enim voluptate amet officia. Excepteur et consectetur amet irure in laboris duis pariatur magna aliquip nisi magna.",
+      "about": "<p>Exercitation laborum tempor excepteur id mollit. Reprehenderit consequat laboris velit magna reprehenderit eu. Et veniam minim eiusmod exercitation elit duis nostrud ea enim voluptate amet officia. Excepteur et consectetur amet irure in laboris duis pariatur magna aliquip nisi magna.</p>",
       "registered": "06.05.2016"
     },
     {

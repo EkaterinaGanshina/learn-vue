@@ -1,7 +1,7 @@
 <template>
     <div class="items-count">
         <span>Элементов на странице: </span>
-        <select v-model="itemsPerPage" class="form-control">
+        <select :value="itemsPerPage" @change="selectNewValue" class="form-control">
             <option v-for="(option, index) in options" :value="option" :key="index">{{ option }}</option>
         </select>
     </div>
@@ -24,8 +24,8 @@ export default {
       default: () => [5, 10, 20]
     }
   },
-  watch: {
-    itemsPerPage() {
+  methods: {
+    selectNewValue() {
       this.$emit("switchItemsNumber", this.itemsPerPage);
     }
   }

@@ -10,6 +10,7 @@
 
 <script>
 import axios from "axios";
+import config from "@/config.js";
 
 export default {
   name: "UploadAvatar",
@@ -41,7 +42,7 @@ export default {
     },
 
     uploadPic() {
-      const url = "https://api.cloudinary.com/v1_1/ganshina/image/upload";
+      const url = config.avatarUrl;
 
       const data = new FormData();
       data.append("upload_preset", "test_preset");
