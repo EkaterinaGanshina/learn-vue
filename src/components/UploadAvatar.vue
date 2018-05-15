@@ -1,7 +1,7 @@
 <template>
     <div class="upload-pic-wrapper">
         <div class="pic-preview">
-            <img :src="image" width="128" height="128" class="img-thumbnail">
+            <img :src="picture" width="128" height="128" class="img-thumbnail">
         </div>
         <input ref="userPic" @change="uploadPic" type="file" class="hidden">
         <button @click="chooseNewPic" type="button" class="btn btn-default">Выбрать новую</button>

@@ -1,7 +1,7 @@
 <template>
     <div class="col-xs-12">
         <div class="users-list">
-            <h1 class="text-center">Список пользователей</h1>
+            <h1 class="text-center">{{ title }}</h1>
 
             <SmartTable :url="urlGetUsers"></SmartTable>
         </div>
@@ -17,6 +17,11 @@ export default {
     return {
       urlGetUsers: "/users"
     };
+  },
+  computed: {
+    title() {
+      return this.$store.state.usersPageTitle;
+    }
   }
 };
 </script>
