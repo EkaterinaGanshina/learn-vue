@@ -23,19 +23,6 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      image: ""
-    };
-  },
-  watch: {
-    image() {
-      this.$emit("input", this.image);
-    }
-  },
-  created() {
-    this.image = this.picture;
-  },
   methods: {
     chooseNewPic() {
       this.$refs.userPic.click();
@@ -52,7 +39,7 @@ export default {
         .post(url, data)
         .then(response => response.data)
         .then(response => {
-          this.image = response.url;
+          this.$emit("input", response.url);
           this.$refs.userPic.value = "";
         });
     }

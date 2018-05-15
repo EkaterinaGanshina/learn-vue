@@ -39,38 +39,25 @@ export default {
     prop: "currentPage",
     event: "switchPage"
   },
-  data() {
-    return {
-      localPage: 1
-    };
-  },
-  watch: {
-    localPage() {
-      this.$emit("switchPage", this.localPage);
-    }
-  },
-  created() {
-    this.localPage = this.currentPage;
-  },
   methods: {
     switchPage(page) {
-      this.localPage = page;
+      this.$emit("switchPage", page);
     },
 
     decrementPage() {
       // если уже находимся на первой странице
-      if (this.localPage === 1) return;
-      this.localPage -= 1;
+      if (this.currentPage === 1) return;
+      this.$emit("switchPage", this.currentPage - 1);
     },
 
     incrementPage() {
       // если уже находимся на последней странице
-      if (this.localPage === this.pagesCount) return;
-      this.localPage += 1;
+      if (this.currentPage === this.pagesCount) return;
+      this.$emit("switchPage", this.currentPage + 1);
     },
 
     isBtnDisabled(pageNumber) {
-      return this.localPage === pageNumber || this.pagesCount === 0;
+      return this.currentPage === pageNumber || this.pagesCount === 0;
     }
   }
 };

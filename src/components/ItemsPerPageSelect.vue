@@ -25,8 +25,8 @@ export default {
     }
   },
   methods: {
-    selectNewValue() {
-      this.$emit("switchItemsNumber", this.itemsPerPage);
+    selectNewValue($event) {
+      this.$emit("switchItemsNumber", Number($event.target.value));
     }
   }
 };
