@@ -51,6 +51,7 @@
             <input v-model.trim="localUser.email"
                    v-validate="'required|email'"
                    type="email" class="form-control"
+                   placeholder="example@mail.ru"
                    id="edit-email" name="email" required>
         </div>
         <div class="form-group">
