@@ -5,13 +5,14 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test": "vue-cli-service test",
     "lint": "vue-cli-service lint",
     "fake": "json-server --watch db.json --port 3004",
-    "test": "vue-cli-service test"
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "flatpickr": "^4.4.6",
+    "flatpickr": "^4.5.0",
     "proschet": "^1.0.1",
     "vee-validate": "^2.0.9",
     "vue": "^2.5.13",
@@ -22,9 +23,12 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.6",
     "@vue/cli-plugin-eslint": "^3.0.0-beta.6",
+    "@vue/cli-plugin-unit-jest": "^3.0.0-beta.10",
     "@vue/cli-service": "^3.0.0-beta.6",
     "@vue/eslint-config-prettier": "^3.0.0-beta.6",
-    "@vue/cli-plugin-unit-jest": "^3.0.0-beta.10",
+    "@vue/test-utils": "^1.0.0-beta.10",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.0.4",
     "json-server": "^0.12.1",
     "lint-staged": "^6.0.0",
     "vue-loader": "^14.2.2",
