@@ -1,14 +1,14 @@
 <template>
     <label class="checkbox-inline">
         <span class="text"><slot></slot></span>
-        <input v-model="isChecked" type="checkbox" />
+        <input v-model="isChecked" type="checkbox" class="element"/>
         <span class="cbx"></span>
     </label>
 </template>
 
 <script>
 export default {
-  name: "SimpleCheckbox",
+  name: 'SimpleCheckbox',
   props: {
     value: {
       type: Boolean,
@@ -18,17 +18,17 @@ export default {
   data() {
     return {
       isChecked: false
-    };
+    }
   },
   created() {
-    this.isChecked = this.value;
+    this.isChecked = this.value
   },
   watch: {
     isChecked() {
-      this.$emit("input", this.isChecked);
+      this.$emit('input', this.isChecked)
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -41,13 +41,13 @@ export default {
   font-weight: 700;
 }
 
-input[type="checkbox"] {
+.element {
   position: absolute;
   left: -9999px;
   opacity: 0;
 }
 
-input[type="checkbox"] + .cbx {
+.element + .cbx {
   width: 22px;
   height: 22px;
   background-color: #fff;
@@ -64,8 +64,8 @@ input[type="checkbox"] + .cbx {
   -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
-input[type="checkbox"]:checked + .cbx::after {
-  content: "✔";
+.element:checked + .cbx::after {
+  content: '✔';
   display: inline-block;
   width: 100%;
   text-align: center;

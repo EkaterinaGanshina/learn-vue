@@ -2,7 +2,7 @@
     <div class="profile-wrapper">
         <div class="row">
             <div class="col-xs-12 col-md-3">
-                <img :src="user.picture" width="150" height="150" class="img-thumbnail">
+                <img :src="user.picture" width="150" height="150" class="user-img img-thumbnail">
             </div>
             <div class="col-xs-12 col-md-9">
                 <p><strong>Пользователь:</strong> {{ fullName }}</p>
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style scoped>
-img {
+.user-img {
   margin-bottom: 15px;
 }
 

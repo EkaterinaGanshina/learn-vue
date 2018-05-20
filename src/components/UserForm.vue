@@ -163,7 +163,7 @@ export default {
 </script>
 
 <style scoped>
-form {
+.form {
   margin-bottom: 15px;
 }
 

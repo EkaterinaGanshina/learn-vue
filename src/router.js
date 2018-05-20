@@ -21,7 +21,7 @@ export default new Router({
     },
     {
       path: '/view/:id',
-      component: () => import('./views/ViewUserPage.vue')
+      component: () => import('./views/UserProfilePage.vue')
     },
     {
       path: '/edit/:id', // динамический путь
