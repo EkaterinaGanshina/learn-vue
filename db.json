@@ -3,11 +3,11 @@
     {
       "id": 0,
       "isActive": true,
-      "balance": "$2060.49",
+      "balance": "2060.49",
       "picture": "http://res.cloudinary.com/ganshina/image/upload/v1526319652/gfvnxewv9edz2qkoviql.jpg",
       "birthday": "07.01.1976",
       "accessLevel": "guest",
-      "firstName": "Queen",
+      "firstName": "Queensrsg",
       "lastName": "Witt",
       "company": "MIXERS",
       "email": "queen.witt@mixers.org",
@@ -19,7 +19,7 @@
     {
       "id": 1,
       "isActive": true,
-      "balance": "$2927.62",
+      "balance": 2956.8,
       "picture": "http://placehold.it/128x128",
       "birthday": "26.02.1986",
       "accessLevel": "admin",
@@ -35,14 +35,14 @@
     {
       "id": 2,
       "isActive": false,
-      "balance": "$2389.67",
+      "balance": "2389.67",
       "picture": "http://res.cloudinary.com/ganshina/image/upload/v1526333269/zhjbpiusnidavc4idah9.jpg",
       "birthday": "24.08.1963",
       "accessLevel": "admin",
       "firstName": "Newton",
       "lastName": "Hatfield",
       "company": "DRAGBOT",
-      "email": "newton.hatfield@dragbot.co.uk",
+      "email": "newton.hatfield@dragbot.uk",
       "phone": "+7 (809) 551-2762",
       "address": "416 Green Street, Darbydale, Mississippi, 8882",
       "about": "<p>Exercitation laborum tempor excepteur id mollit. Reprehenderit consequat laboris velit magna reprehenderit eu. Et veniam minim eiusmod exercitation elit duis nostrud ea enim voluptate amet officia. Excepteur et consectetur amet irure in laboris duis pariatur magna aliquip nisi magna.</p>",
@@ -51,7 +51,7 @@
     {
       "id": 3,
       "isActive": false,
-      "balance": "$1048.18",
+      "balance": "1048.18",
       "picture": "http://placehold.it/128x128",
       "birthday": "10.06.1978",
       "accessLevel": "guest",
@@ -67,7 +67,7 @@
     {
       "id": 4,
       "isActive": true,
-      "balance": "$3469.52",
+      "balance": "3469.52",
       "picture": "http://res.cloudinary.com/ganshina/image/upload/v1526148386/qr10drvai2t3ruwswnk5.jpg",
       "birthday": "11.05.1986",
       "accessLevel": "admin",
@@ -83,7 +83,7 @@
     {
       "id": 5,
       "isActive": true,
-      "balance": "$2559.17",
+      "balance": "2559.17",
       "picture": "http://res.cloudinary.com/ganshina/image/upload/v1526148830/fgdmzbu14sgbcioxi6ea.jpg",
       "birthday": "27.01.1976",
       "accessLevel": "guest",
@@ -99,7 +99,7 @@
     {
       "id": 6,
       "isActive": false,
-      "balance": "$3987.22",
+      "balance": "3987.22",
       "picture": "http://placehold.it/128x128",
       "birthday": "25.12.2000",
       "accessLevel": "user",
@@ -115,7 +115,7 @@
     {
       "id": 7,
       "isActive": true,
-      "balance": "$2702.34",
+      "balance": "2702.34",
       "picture": "http://placehold.it/128x128",
       "birthday": "11.11.1955",
       "accessLevel": "admin",
@@ -131,7 +131,7 @@
     {
       "id": 8,
       "isActive": false,
-      "balance": "$1032.41",
+      "balance": "1032.41",
       "picture": "http://placehold.it/128x128",
       "birthday": "22.01.1979",
       "accessLevel": "admin",
@@ -147,7 +147,7 @@
     {
       "id": 9,
       "isActive": true,
-      "balance": "$3610.35",
+      "balance": "3610.35",
       "picture": "http://placehold.it/128x128",
       "birthday": "10.01.1966",
       "accessLevel": "admin",
@@ -163,7 +163,7 @@
     {
       "id": 10,
       "isActive": true,
-      "balance": "$3050.53",
+      "balance": "3050.53",
       "picture": "http://placehold.it/128x128",
       "birthday": "07.07.1970",
       "accessLevel": "guest",
@@ -179,7 +179,7 @@
     {
       "id": 11,
       "isActive": false,
-      "balance": "$3357.22",
+      "balance": "3357.22",
       "picture": "http://placehold.it/128x128",
       "birthday": "05.02.1977",
       "accessLevel": "guest",
@@ -195,7 +195,7 @@
     {
       "id": 12,
       "isActive": true,
-      "balance": "$3329.81",
+      "balance": "3329.81",
       "picture": "http://placehold.it/128x128",
       "birthday": "05.06.1976",
       "accessLevel": "user",
@@ -211,7 +211,7 @@
     {
       "id": 13,
       "isActive": true,
-      "balance": "$2231.12",
+      "balance": "2231.12",
       "picture": "http://placehold.it/128x128",
       "birthday": "16.01.1956",
       "accessLevel": "admin",
@@ -227,7 +227,7 @@
     {
       "id": 14,
       "isActive": false,
-      "balance": "$1729.59",
+      "balance": "1729.59",
       "picture": "http://placehold.it/128x128",
       "birthday": "27.02.1975",
       "accessLevel": "guest",
@@ -243,7 +243,7 @@
     {
       "id": 15,
       "isActive": false,
-      "balance": "$2305.91",
+      "balance": "2305.91",
       "picture": "http://placehold.it/128x128",
       "birthday": "22.02.1988",
       "accessLevel": "guest",
@@ -259,7 +259,7 @@
     {
       "id": 16,
       "isActive": true,
-      "balance": "$3755.66",
+      "balance": "3755.66",
       "picture": "http://placehold.it/128x128",
       "birthday": "08.08.1983",
       "accessLevel": "user",
@@ -275,7 +275,7 @@
     {
       "id": 17,
       "isActive": false,
-      "balance": "$1735.94",
+      "balance": "1735.94",
       "picture": "http://placehold.it/128x128",
       "birthday": "08.05.2001",
       "accessLevel": "user",
@@ -291,7 +291,7 @@
     {
       "id": 18,
       "isActive": true,
-      "balance": "$2919.05",
+      "balance": "2919.05",
       "picture": "http://placehold.it/128x128",
       "birthday": "09.02.1965",
       "accessLevel": "guest",
@@ -307,7 +307,7 @@
     {
       "id": 19,
       "isActive": false,
-      "balance": "$2035.69",
+      "balance": "2035.69",
       "picture": "http://placehold.it/128x128",
       "birthday": "12.05.1999",
       "accessLevel": "user",
@@ -323,7 +323,7 @@
     {
       "id": 20,
       "isActive": false,
-      "balance": "$1703.18",
+      "balance": "1703.18",
       "picture": "http://placehold.it/128x128",
       "birthday": "08.04.1965",
       "accessLevel": "guest",
@@ -339,7 +339,7 @@
     {
       "id": 21,
       "isActive": false,
-      "balance": "$3167.44",
+      "balance": "3167.44",
       "picture": "http://placehold.it/128x128",
       "birthday": "28.10.1966",
       "accessLevel": "admin",
@@ -355,7 +355,7 @@
     {
       "id": 22,
       "isActive": false,
-      "balance": "$1585.39",
+      "balance": "1585.39",
       "picture": "http://placehold.it/128x128",
       "birthday": "05.07.1981",
       "accessLevel": "admin",
@@ -371,7 +371,7 @@
     {
       "id": 23,
       "isActive": true,
-      "balance": "$3395.74",
+      "balance": "3395.74",
       "picture": "http://placehold.it/128x128",
       "birthday": "10.12.1998",
       "accessLevel": "guest",
@@ -387,7 +387,7 @@
     {
       "id": 24,
       "isActive": true,
-      "balance": "$3746.17",
+      "balance": "3746.17",
       "picture": "http://placehold.it/128x128",
       "birthday": "06.05.1969",
       "accessLevel": "user",

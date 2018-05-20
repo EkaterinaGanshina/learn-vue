@@ -36,6 +36,11 @@
                         <td>{{ user.phone }}</td>
                         <td>{{ user.company }}</td>
                         <td>
+                            <router-link :to="`/view/${user.id}`" tag="button"
+                                         class="btn btn-default btn-sm"
+                                         title="Полный профиль">
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                            </router-link>
                             <router-link :to="`/edit/${user.id}`" tag="button"
                                          class="btn btn-default btn-sm"
                                          title="Редактировать">
@@ -54,15 +59,15 @@
 </template>
 
 <script>
-import axios from "@/axios.js";
-import proschet from "proschet";
+import axios from '@/axios.js'
+import proschet from 'proschet'
 
 export default {
-  name: "smart-table",
+  name: 'smart-table',
   components: {
-    TableSearch: () => import("@/components/TableSearch.vue"),
-    Pagination: () => import("@/components/Pagination.vue"),
-    ItemsPerPageSelect: () => import("@/components/ItemsPerPageSelect.vue")
+    TableSearch: () => import('@/components/TableSearch.vue'),
+    Pagination: () => import('@/components/Pagination.vue'),
+    ItemsPerPageSelect: () => import('@/components/ItemsPerPageSelect.vue')
   },
   props: {
     url: {
@@ -75,33 +80,33 @@ export default {
       list: [],
       total: 0,
       searchTotal: 0,
-      userDeclensions: ["пользователь", "пользователя", "пользователей"],
-      searchQuery: "",
+      userDeclensions: ['пользователь', 'пользователя', 'пользователей'],
+      searchQuery: '',
       itemsPerPage: 10,
       currentPage: 1
-    };
+    }
   },
   computed: {
     totalItemsStr() {
-      const getUsers = proschet(this.userDeclensions);
+      const getUsers = proschet(this.userDeclensions)
       const found =
         this.searchQuery && this.searchTotal
           ? `, найдено ${this.searchTotal} ${getUsers(this.searchTotal)}`
-          : "";
-      return `Всего ${this.total} ${getUsers(this.total)}${found}`;
+          : ''
+      return `Всего ${this.total} ${getUsers(this.total)}${found}`
     },
 
     // показывать ли строку таблицы "Ничего не найдено"
     isNotFoundShown() {
-      return this.searchQuery && this.searchTotal === 0;
+      return this.searchQuery && this.searchTotal === 0
     },
 
     itemsCount() {
-      return this.searchQuery ? this.searchTotal : this.total;
+      return this.searchQuery ? this.searchTotal : this.total
     },
 
     pagesCount() {
-      return Math.ceil(this.itemsCount / this.itemsPerPage);
+      return Math.ceil(this.itemsCount / this.itemsPerPage)
     },
 
     requestConfig() {
@@ -110,47 +115,47 @@ export default {
           _page: this.currentPage,
           _limit: this.itemsPerPage
         }
-      };
-
-      if (this.searchQuery) {
-        config.params.q = this.searchQuery;
       }
 
-      return config;
+      if (this.searchQuery) {
+        config.params.q = this.searchQuery
+      }
+
+      return config
     }
   },
   watch: {
-    currentPage: "loadItems", // переключение страницы (пагинация)
-    itemsPerPage: "refreshTable", // изменение количества эл-тов в таблице
-    searchQuery: "refreshTable" // изменение поискового запроса (поиск)
+    currentPage: 'loadItems', // переключение страницы (пагинация)
+    itemsPerPage: 'refreshTable', // изменение количества эл-тов в таблице
+    searchQuery: 'refreshTable' // изменение поискового запроса (поиск)
   },
   mounted() {
-    this.loadItems();
+    this.loadItems()
   },
   methods: {
     loadItems() {
       axios
         .get(this.url, this.requestConfig)
         .then(response => {
-          this.list = response.data;
+          this.list = response.data
 
           if (this.searchQuery) {
-            this.searchTotal = Number(response.headers["x-total-count"]);
+            this.searchTotal = Number(response.headers['x-total-count'])
           } else {
-            this.total = Number(response.headers["x-total-count"]);
+            this.total = Number(response.headers['x-total-count'])
           }
         })
         .catch(error => {
-          console.error(error);
-        });
+          console.error(error)
+        })
     },
 
     refreshTable() {
-      this.currentPage = 1;
-      this.loadItems();
+      this.currentPage = 1
+      this.loadItems()
     }
   }
-};
+}
 </script>
 
 <style scoped>

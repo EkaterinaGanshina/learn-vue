@@ -71,35 +71,39 @@
             <label for="edit-company">Компания</label>
             <input v-model.trim="localUser.company" type="text" class="form-control" id="edit-company">
         </div>
-        <div class="form-group">
-            <label for="edit-balance">Баланс</label>
-            <input v-model.trim="localUser.balance" type="text" class="form-control" id="edit-balance">
-        </div>
-        <div class="form-group">
-            <label for="edit-about">Биография</label>
-            <vue-editor v-model="localUser.about" id="edit-about" :editorToolbar="customToolbar"></vue-editor>
-        </div>
 
         <div class="form-group">
-            <SimpleCheckbox v-model="localUser.isActive">
-                Пользователь активен
-            </SimpleCheckbox>
+            <div class="form-inline">
+                <label for="edit-balance">Баланс</label>
+                <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input v-model.number="localUser.balance" type="text" class="form-control" id="edit-balance">
+                </div>
+                <SimpleCheckbox v-model="localUser.isActive">
+                    Пользователь активен
+                </SimpleCheckbox>
+            </div>
+        </div>
+
+        <div class="form-group-inline">
+            <label for="edit-about">Биография</label>
+            <vue-editor v-model="localUser.about" id="edit-about" :editorToolbar="customToolbar"></vue-editor>
         </div>
     </form>
 </template>
 
 <script>
-import Vue from "vue";
-import VeeValidate from "vee-validate";
-import { VueEditor } from "vue2-editor";
+import Vue from 'vue'
+import VeeValidate from 'vee-validate'
+import { VueEditor } from 'vue2-editor'
 
-Vue.use(VeeValidate);
+Vue.use(VeeValidate)
 
 export default {
-  name: "UserForm",
-  inject: ["$validator"],
+  name: 'UserForm',
+  inject: ['$validator'],
   model: {
-    prop: "user"
+    prop: 'user'
   },
   props: {
     user: {
@@ -108,38 +112,52 @@ export default {
     }
   },
   components: {
-    Datepicker: () => import("@/components/Datepicker.vue"),
-    UploadAvatar: () => import("@/components/UploadAvatar.vue"),
-    SimpleCheckbox: () => import("@/components/SimpleCheckbox.vue"),
+    Datepicker: () => import('@/components/Datepicker.vue'),
+    UploadAvatar: () => import('@/components/UploadAvatar.vue'),
+    SimpleCheckbox: () => import('@/components/SimpleCheckbox.vue'),
     VueEditor
   },
   data() {
     return {
       localUser: null,
       customToolbar: [
-        ["bold", "italic", "underline", "strike"],
+        ['bold', 'italic', 'underline', 'strike'],
         [
-          { align: "" },
-          { align: "center" },
-          { align: "right" },
-          { align: "justify" }
+          { align: '' },
+          { align: 'center' },
+          { align: 'right' },
+          { align: 'justify' }
         ],
-        [{ list: "ordered" }, { list: "bullet" }],
-        ["blockquote", "code-block"],
-        ["color", "background"]
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['blockquote', 'code-block'],
+        ['color', 'background']
       ]
-    };
+    }
   },
   watch: {
     localUser: {
       deep: true,
       handler() {
-        this.$emit("input", this.localUser);
+        this.$emit('input', this.localUser)
       }
     }
   },
   created() {
-    this.localUser = Object.assign({}, this.user);
+    this.localUser = Object.assign({}, this.user)
   }
-};
+}
 </script>
+
+<style scoped>
+form {
+  margin-bottom: 15px;
+}
+
+.form-inline label {
+  margin-right: 10px;
+}
+
+.form-inline .input-group + label {
+  margin-left: 15px;
+}
+</style>
