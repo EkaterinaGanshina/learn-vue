@@ -79,10 +79,17 @@
                     <div class="input-group-addon">$</div>
                     <input v-model.number="localUser.balance" type="text" class="form-control" id="edit-balance">
                 </div>
-                <SimpleCheckbox v-model="localUser.isActive">
-                    Пользователь активен
-                </SimpleCheckbox>
             </div>
+        </div>
+
+        <div class="form-group">
+            <AccessLevel v-model="user.accessLevel" :roles="roles">Роль</AccessLevel>
+        </div>
+
+        <div class="form-group">
+            <SimpleCheckbox v-model="localUser.isActive">
+                Пользователь активен
+            </SimpleCheckbox>
         </div>
 
         <div class="form-group-inline">
@@ -96,6 +103,7 @@
 import Vue from 'vue'
 import VeeValidate from 'vee-validate'
 import { VueEditor } from 'vue2-editor'
+import config from '@/config.js'
 
 Vue.use(VeeValidate)
 
@@ -115,6 +123,7 @@ export default {
     Datepicker: () => import('@/components/Datepicker.vue'),
     UploadAvatar: () => import('@/components/UploadAvatar.vue'),
     SimpleCheckbox: () => import('@/components/SimpleCheckbox.vue'),
+    AccessLevel: () => import('@/components/AccessLevelSelect.vue'),
     VueEditor
   },
   data() {
@@ -132,6 +141,11 @@ export default {
         ['blockquote', 'code-block'],
         ['color', 'background']
       ]
+    }
+  },
+  computed: {
+    roles() {
+      return config.roles
     }
   },
   watch: {

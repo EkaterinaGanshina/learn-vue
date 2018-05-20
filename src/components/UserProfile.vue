@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import config from '@/config.js'
+
 export default {
   name: 'user-profile',
   props: {
@@ -36,11 +38,7 @@ export default {
     roles: {
       type: Object,
       default: () => {
-        return {
-          guest: 'Гость',
-          user: 'Пользователь',
-          admin: 'Администратор'
-        }
+        return config.roles
       }
     }
   },
