@@ -7,10 +7,6 @@ h1 {
     margin-bottom: 3rem;
 }
 
-button {
-    margin-bottom: 20px;
-}
-
 [v-cloak] {
     display: none;
 }

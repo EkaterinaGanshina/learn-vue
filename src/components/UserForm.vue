@@ -19,7 +19,7 @@
             <div class="col-xs-12 col-md-3">
                 <div class="form-group">
                     <label for="edit-pic">Аватарка</label>
-                    <UploadAvatar v-model="localUser.picture" id="edit-pic"/>
+                    <UploadAvatar v-model="localUser.picture" :width="picture.width" :height="picture.height" id="edit-pic"/>
                 </div>
             </div>
             <div class="col-xs-12 col-md-9">
@@ -37,7 +37,7 @@
                            v-validate="'required|alpha_dash'"
                            type="text" class="form-control"
                            id="edit-lastname" name="lasName">
-                    <span v-show="errors.has('lastName')" class="control-label">{{ errors.first('firstName') }}</span>
+                    <span v-show="errors.has('lastName')" class="control-label">{{ errors.first('lastName') }}</span>
                 </div>
                 <div class="form-group">
                     <label for="edit-birthday">Дата рождения</label>
@@ -83,7 +83,7 @@
         </div>
 
         <div class="form-group">
-            <AccessLevel v-model="user.accessLevel" :roles="roles">Роль</AccessLevel>
+            <AccessLevel v-model="localUser.accessLevel" :roles="roles">Роль</AccessLevel>
         </div>
 
         <div class="form-group">
@@ -129,6 +129,11 @@ export default {
   data() {
     return {
       localUser: null,
+      picture: {
+        width: 128,
+        height: 128
+      },
+      roles: config.roles,
       customToolbar: [
         ['bold', 'italic', 'underline', 'strike'],
         [
@@ -141,11 +146,6 @@ export default {
         ['blockquote', 'code-block'],
         ['color', 'background']
       ]
-    }
-  },
-  computed: {
-    roles() {
-      return config.roles
     }
   },
   watch: {

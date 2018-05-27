@@ -1,6 +1,6 @@
 <template>
     <div class="smart-table">
-        <div v-if="!searchQuery && !list.length" class="alert alert-warning">Загрузка...</div>
+        <div v-if="isLoadingShown" class="alert alert-warning">Загрузка...</div>
         <template v-else>
             <div class="table-header">
                 <div class="str-count">{{ totalItemsStr }}</div>
@@ -94,6 +94,11 @@ export default {
           ? `, найдено ${this.searchTotal} ${getUsers(this.searchTotal)}`
           : ''
       return `Всего ${this.total} ${getUsers(this.total)}${found}`
+    },
+
+    // показывать ли плашку "Загрузка"
+    isLoadingShown() {
+      return !this.searchQuery && !this.list.length
     },
 
     // показывать ли строку таблицы "Ничего не найдено"

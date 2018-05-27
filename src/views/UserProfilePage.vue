@@ -41,9 +41,14 @@ export default {
   },
   methods: {
     loadUser() {
-      axios.get(`/users/${this.id}`).then(response => {
-        this.user = response.data
-      })
+      axios
+        .get(`/users/${this.id}`)
+        .then(response => {
+          this.user = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }

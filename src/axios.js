@@ -1,7 +1,8 @@
-import axios from 'axios';
+import axios from 'axios'
+import config from '@/config'
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3004'
-});
+  baseURL: config.apiUrl
+})
 
-export default instance;
+export default instance

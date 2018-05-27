@@ -66,7 +66,7 @@
     },
     {
       "id": 4,
-      "isActive": true,
+      "isActive": false,
       "balance": "3469.52",
       "picture": "http://res.cloudinary.com/ganshina/image/upload/v1526148386/qr10drvai2t3ruwswnk5.jpg",
       "birthday": "11.05.1986",
@@ -86,7 +86,7 @@
       "balance": "2559.17",
       "picture": "http://res.cloudinary.com/ganshina/image/upload/v1526148830/fgdmzbu14sgbcioxi6ea.jpg",
       "birthday": "27.01.1976",
-      "accessLevel": "guest",
+      "accessLevel": "user",
       "firstName": "Roseann",
       "lastName": "Osborn",
       "company": "GRACKER",

@@ -3,7 +3,7 @@
         <div class="form-group">
             <label for="access-level"><slot></slot></label>
             <select :value="accessLevel" @change="selectRole" id="access-level" class="form-control">
-                <option v-for="(role, key, index) in roles" :value="key" :key="index">{{ role }}</option>
+                <option v-for="role in roles" :value="role.name" :key="role.name">{{ role.rus }}</option>
             </select>
         </div>
     </div>
@@ -14,7 +14,7 @@ export default {
   name: 'access-level-select',
   props: {
     roles: {
-      type: Object,
+      type: Array,
       required: true
     },
     accessLevel: {

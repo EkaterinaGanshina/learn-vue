@@ -1,7 +1,7 @@
 <template>
     <div class="items-count">
         <span>Элементов на странице: </span>
-        <select :value="itemsPerPage" @change="selectNewValue" class="form-control">
+        <select :value="itemsPerPage" @change="selectNewValue($event.target.value)" class="form-control">
             <option v-for="(option, index) in options" :value="option" :key="index">{{ option }}</option>
         </select>
     </div>
@@ -9,10 +9,10 @@
 
 <script>
 export default {
-  name: "ItemsPerPageSelect",
+  name: 'ItemsPerPageSelect',
   model: {
-    prop: "itemsPerPage",
-    event: "switchItemsNumber"
+    prop: 'itemsPerPage',
+    event: 'switchItemsNumber'
   },
   props: {
     itemsPerPage: {
@@ -25,11 +25,11 @@ export default {
     }
   },
   methods: {
-    selectNewValue($event) {
-      this.$emit("switchItemsNumber", Number($event.target.value));
+    selectNewValue(value) {
+      this.$emit('switchItemsNumber', Number(value))
     }
   }
-};
+}
 </script>
 
 <style scoped>

@@ -1,7 +1,7 @@
 <template>
     <div class="col-xs-12 col-md-4">
         <div class="search input-group">
-            <input v-model="query" type="text" class="form-control" placeholder="Поиск по таблице">
+            <input v-model.trim="query" type="text" class="form-control" placeholder="Поиск по таблице">
             <span class="input-group-btn">
             <button @click="sendSearchQuery" type="button" class="btn btn-primary">
                 <span class="glyphicon glyphicon-search"></span>
@@ -13,23 +13,23 @@
 
 <script>
 export default {
-  name: "TableSearch",
+  name: 'TableSearch',
   model: {
-    prop: "searchQuery",
-    event: "search"
+    prop: 'searchQuery',
+    event: 'search'
   },
   data() {
     return {
-      query: ""
-    };
+      query: ''
+    }
   },
   watch: {
-    query: "sendSearchQuery"
+    query: 'sendSearchQuery'
   },
   methods: {
     sendSearchQuery() {
-      this.$emit("search", this.query.toLowerCase());
+      this.$emit('search', this.query.toLowerCase())
     }
   }
-};
+}
 </script>

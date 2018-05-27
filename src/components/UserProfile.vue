@@ -36,10 +36,8 @@ export default {
       required: true
     },
     roles: {
-      type: Object,
-      default: () => {
-        return config.roles
-      }
+      type: Array,
+      default: () => config.roles
     }
   },
   computed: {
@@ -48,7 +46,8 @@ export default {
     },
 
     userRole() {
-      return this.roles[this.user.accessLevel]
+      let result = this.roles.find(item => item.name === this.user.accessLevel)
+      return result.rus
     },
 
     isActive() {

@@ -7,9 +7,7 @@
             <UserForm v-else v-model="user"/>
 
             <button @click="saveUser" type="button" class="btn btn-primary">Сохранить</button>
-            <router-link :to="`/users`" tag="button" class="btn btn-default">
-                Отмена
-            </router-link>
+            <router-link to="/users" tag="button" class="btn btn-default">Отмена</router-link>
             <button @click="deleteUser" type="button" class="btn btn-danger pull-right">Удалить пользователя</button>
         </div>
     </div>
@@ -34,7 +32,7 @@ export default {
       return this.$route.params.id
     },
 
-    loadUrl() {
+    userUrl() {
       return `/users/${this.id}`
     }
   },
@@ -43,7 +41,7 @@ export default {
   },
   methods: {
     loadUser() {
-      axios.get(this.loadUrl).then(response => {
+      axios.get(this.userUrl).then(response => {
         this.user = response.data
       })
     },
@@ -56,7 +54,7 @@ export default {
       }
 
       axios
-        .patch(this.loadUrl, this.user)
+        .patch(this.userUrl, this.user)
         .then(() => {
           console.info('Данные сохранены.')
           this.$router.push(`/view/${this.id}`)
@@ -68,7 +66,7 @@ export default {
 
     deleteUser() {
       axios
-        .delete(this.loadUrl)
+        .delete(this.userUrl)
         .then(() => {
           console.info('Пользователь удален.')
           this.$router.push('/users')

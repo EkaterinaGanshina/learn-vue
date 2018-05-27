@@ -1,7 +1,7 @@
 <template>
     <label class="checkbox-inline">
         <span class="text"><slot></slot></span>
-        <input v-model="isChecked" type="checkbox" class="element"/>
+        <input :checked="isChecked" @change="toggle($event.target.checked)" type="checkbox" class="element"/>
         <span class="cbx"></span>
     </label>
 </template>
@@ -10,22 +10,17 @@
 export default {
   name: 'SimpleCheckbox',
   props: {
-    value: {
+    isChecked: {
       type: Boolean,
       default: false
     }
   },
-  data() {
-    return {
-      isChecked: false
-    }
+  model: {
+    prop: 'isChecked'
   },
-  created() {
-    this.isChecked = this.value
-  },
-  watch: {
-    isChecked() {
-      this.$emit('input', this.isChecked)
+  methods: {
+    toggle(value) {
+      this.$emit('input', value)
     }
   }
 }

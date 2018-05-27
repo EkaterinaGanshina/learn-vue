@@ -6,55 +6,55 @@
 </template>
 
 <script>
-import flatpickr from "flatpickr";
-import { Russian } from "flatpickr/dist/l10n/ru.js";
-import "flatpickr/dist/flatpickr.css";
+import flatpickr from 'flatpickr'
+import { Russian } from 'flatpickr/dist/l10n/ru.js'
+import 'flatpickr/dist/flatpickr.css'
 
 export default {
-  name: "Datepicker",
+  name: 'Datepicker',
   props: {
     value: {
       type: String,
-      default: ""
+      default: new Date()
     }
   },
   data() {
     return {
       fp: null
-    };
+    }
   },
   watch: {
-    value: "updatePicker"
+    value: 'updatePicker'
   },
   mounted() {
-    this.initPicker();
+    this.initPicker()
   },
   beforeDestroy() {
-    this.fp.destroy();
+    this.fp.destroy()
   },
   methods: {
     initPicker() {
       this.fp = flatpickr(this.$refs.datepicker, {
-        dateFormat: "d.m.Y",
+        dateFormat: 'd.m.Y',
         locale: Russian,
         maxDate: new Date(),
-        onChange: (selectedDates, dateStr) => this.$emit("input", dateStr)
-      });
+        onChange: (selectedDates, dateStr) => this.$emit('input', dateStr)
+      })
     },
 
     updatePicker() {
       if (this.fp) {
-        this.fp.setDate(this.value);
+        this.fp.setDate(this.value)
       }
     },
 
     openPicker() {
       if (this.fp) {
-        this.fp.open();
+        this.fp.open()
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
