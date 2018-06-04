@@ -141,12 +141,14 @@ export default {
       axios
         .get(this.url, this.requestConfig)
         .then(response => {
+          const total = Number(response.headers['x-total-count'])
+
           this.list = response.data
 
           if (this.searchQuery) {
-            this.searchTotal = Number(response.headers['x-total-count'])
+            this.searchTotal = total
           } else {
-            this.total = Number(response.headers['x-total-count'])
+            this.total = total
           }
         })
         .catch(error => {
