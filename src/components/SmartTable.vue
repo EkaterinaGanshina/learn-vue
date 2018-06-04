@@ -89,10 +89,9 @@ export default {
   computed: {
     totalItemsStr() {
       const getUsers = proschet(this.userDeclensions)
-      const found =
-        this.searchQuery && this.searchTotal
-          ? `, найдено ${this.searchTotal} ${getUsers(this.searchTotal)}`
-          : ''
+      const found = this.searchQuery
+        ? `, найдено ${this.searchTotal} ${getUsers(this.searchTotal)}`
+        : ''
       return `Всего ${this.total} ${getUsers(this.total)}${found}`
     },
 

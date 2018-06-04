@@ -10,7 +10,7 @@
                 <router-link :to="`/edit/${id}`" tag="button" class="btn btn-primary">
                     Редактировать
                 </router-link>
-                <router-link :to="`/users`" tag="button" class="btn btn-default">
+                <router-link to="/users" tag="button" class="btn btn-default">
                     К списку пользователей
                 </router-link>
             </div>

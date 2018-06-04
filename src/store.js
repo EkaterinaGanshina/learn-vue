@@ -1,18 +1,16 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    usersPageTitle: "Список пользователей",
-    indexPageTitle: "Main page"
+    usersPageTitle: 'Список пользователей',
+    indexPageTitle: 'Main page'
   },
   mutations: {
-    changeIndexTitle(state, payload) {
-      state.indexPageTitle = payload;
-    }
+    changeIndexTitle: (state, payload) => (state.indexPageTitle = payload)
   }
-});
+})
 
-export default store;
+export default store

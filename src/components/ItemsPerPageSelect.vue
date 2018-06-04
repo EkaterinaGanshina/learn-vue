@@ -2,7 +2,7 @@
     <div class="items-count">
         <span>Элементов на странице: </span>
         <select :value="itemsPerPage" @change="selectNewValue($event.target.value)" class="form-control">
-            <option v-for="(option, index) in options" :value="option" :key="index">{{ option }}</option>
+            <option v-for="option in options" :value="option" :key="option">{{ option }}</option>
         </select>
     </div>
 </template>

@@ -15,7 +15,6 @@
 export default {
   name: 'TableSearch',
   model: {
-    prop: 'searchQuery',
     event: 'search'
   },
   data() {

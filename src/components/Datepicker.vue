@@ -15,7 +15,7 @@ export default {
   props: {
     value: {
       type: String,
-      default: new Date()
+      required: true
     }
   },
   data() {

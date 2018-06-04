@@ -1,7 +1,7 @@
 <template>
     <label class="checkbox-inline">
         <span class="text"><slot></slot></span>
-        <input :checked="isChecked" @change="toggle($event.target.checked)" type="checkbox" class="element"/>
+        <input :checked="isChecked" @change="toggle()" type="checkbox" class="element"/>
         <span class="cbx"></span>
     </label>
 </template>
@@ -19,8 +19,8 @@ export default {
     prop: 'isChecked'
   },
   methods: {
-    toggle(value) {
-      this.$emit('input', value)
+    toggle() {
+      this.$emit('input', !this.isChecked)
     }
   }
 }

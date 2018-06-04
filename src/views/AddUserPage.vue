@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import axios from "@/axios.js";
-import UserForm from "@/components/UserForm.vue";
+import axios from '@/axios.js'
+import UserForm from '@/components/UserForm.vue'
 
 export default {
-  name: "add-users-page",
+  name: 'add-users-page',
   components: {
     UserForm
   },
@@ -24,45 +24,45 @@ export default {
       // заготовка для нового пользователя
       user: {
         isActive: true,
-        balance: "",
-        picture: "http://placehold.it/128x128",
-        birthday: "",
-        accessLevel: "user",
-        firstName: "",
-        lastName: "",
-        company: "",
-        email: "",
-        phone: "",
-        address: "",
-        about: ""
+        balance: '',
+        picture: 'http://placehold.it/128x128',
+        birthday: '01.01.1980', // дефолтное значение для datepicker
+        accessLevel: 'user',
+        firstName: '',
+        lastName: '',
+        company: '',
+        email: '',
+        phone: '',
+        address: '',
+        about: ''
       }
-    };
+    }
   },
   methods: {
     createUser() {
-      this.$validator.validateAll();
+      this.$validator.validateAll()
       if (this.errors.any()) {
-        alert("Что-то пошло не так. Проверьте, правильно ли заполнены поля");
-        return;
+        alert('Что-то пошло не так. Проверьте, правильно ли заполнены поля')
+        return
       }
 
-      const now = new Date();
-      this.user.registered = now.toLocaleDateString();
+      const now = new Date()
+      this.user.registered = now.toLocaleDateString()
 
       axios
-        .post("/users", this.user)
+        .post('/users', this.user)
         .then(response => {
-          console.info("Пользователь создан");
-          this.$router.push("/edit/" + response.data.id);
+          console.info('Пользователь создан')
+          this.$router.push(`/edit/${response.data.id}`)
         })
         .catch(error => {
-          console.error(error);
-        });
+          console.error(error)
+        })
     },
 
     cancelCreate() {
-      this.$router.push("/users");
+      this.$router.push('/users')
     }
   }
-};
+}
 </script>
